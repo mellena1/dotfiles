@@ -1,0 +1,16 @@
+require("config.lazy")
+
+require("config.lspconfig")
+require("config.mason")
+
+require("config.bufferline")
+require("config.cmp")
+require("config.telescope")
+require("config.tree")
+require("config.neotest")
+
+require("config.monokai")
+
+require("config.lualine")
+
+require("config.mellena1")

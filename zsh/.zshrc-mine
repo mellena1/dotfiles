@@ -1,0 +1,19 @@
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# Go
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+
+# nvm
+source /usr/share/nvm/init-nvm.sh
+
+# kotlin
+export KOTLIN_HOME=/usr/share/kotlin
+
+# java
+export JAVA_HOME=/usr/lib/jvm/default
