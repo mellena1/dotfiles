@@ -5,7 +5,10 @@ local on_attach = require('lsp-format').on_attach
 local lspconfig = require('lspconfig')
 local util = lspconfig.util
 
-lspconfig.gopls.setup {}
+lspconfig.gopls.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
 
 lspconfig.lua_ls.setup {
 	capabilities = capabilities,
