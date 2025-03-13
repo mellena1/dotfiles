@@ -4,10 +4,7 @@ local on_attach = require('lsp-format').on_attach
 
 local lspconfig = require('lspconfig')
 
-lspconfig.rust_analyzer.setup {
-	capabilities = capabilities,
-	on_attach = on_attach,
-}
+lspconfig.gopls.setup {}
 
 lspconfig.lua_ls.setup {
 	capabilities = capabilities,
@@ -23,4 +20,9 @@ lspconfig.lua_ls.setup {
 			},
 		},
 	},
+}
+
+lspconfig.rust_analyzer.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
 }
