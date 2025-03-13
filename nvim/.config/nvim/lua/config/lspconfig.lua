@@ -26,3 +26,14 @@ lspconfig.rust_analyzer.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 }
+
+lspconfig.terraformls.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
+
+lspconfig.ts_ls.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+
+}
