@@ -6,5 +6,6 @@ require("mason-lspconfig").setup {
 		"rust_analyzer",
 		"terraformls",
 		"ts_ls",
+		"eslint",
 	},
 }

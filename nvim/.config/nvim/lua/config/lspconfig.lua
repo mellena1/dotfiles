@@ -3,6 +3,7 @@ require('lsp-format').setup {}
 local on_attach = require('lsp-format').on_attach
 
 local lspconfig = require('lspconfig')
+local util = lspconfig.util
 
 lspconfig.gopls.setup {}
 
@@ -34,6 +35,14 @@ lspconfig.terraformls.setup {
 
 lspconfig.ts_ls.setup {
 	capabilities = capabilities,
-	on_attach = on_attach,
+	-- no on_attach here bc we want to format with eslint
+}
 
+lspconfig.eslint.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+	root_dir = function(fname)
+		-- our project root_dir is wherever tsconfig.json lives
+		return util.root_pattern('tsconfig.json')(fname)
+	end,
 }
