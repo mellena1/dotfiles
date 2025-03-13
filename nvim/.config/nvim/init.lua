@@ -9,6 +9,8 @@ require("config.telescope")
 require("config.tree")
 require("config.neotest")
 
+require("config.gitsigns")
+
 require("config.monokai")
 
 require("config.lualine")
