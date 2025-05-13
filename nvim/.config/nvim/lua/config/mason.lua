@@ -7,5 +7,6 @@ require("mason-lspconfig").setup {
 		"terraformls",
 		"ts_ls",
 		"eslint",
+		"pylsp",
 	},
 }

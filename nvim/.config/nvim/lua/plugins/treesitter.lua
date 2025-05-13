@@ -23,6 +23,8 @@ return {
 					"json",
 					"terraform",
 					"tsx",
+					"yaml",
+					"kotlin",
 				},
 				sync_install = false,
 				highlight = { enable = true },

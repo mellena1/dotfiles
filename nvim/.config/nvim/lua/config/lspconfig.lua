@@ -49,3 +49,5 @@ lspconfig.eslint.setup {
 		return util.root_pattern('tsconfig.json')(fname)
 	end,
 }
+
+lspconfig.pylsp.setup {}

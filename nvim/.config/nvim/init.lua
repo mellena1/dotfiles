@@ -15,4 +15,6 @@ require("config.monokai")
 
 require("config.lualine")
 
+require("config.guessindent")
+
 require("config.mellena1")
