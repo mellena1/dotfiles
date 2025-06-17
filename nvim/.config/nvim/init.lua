@@ -17,4 +17,6 @@ require("config.lualine")
 
 require("config.guessindent")
 
+require("config.harpoon")
+
 require("config.mellena1")

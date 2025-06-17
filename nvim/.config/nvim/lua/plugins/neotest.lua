@@ -10,5 +10,8 @@ return {
 	},
 	{
 		"rouge8/neotest-rust"
+	},
+	{
+		"nvim-neotest/neotest-go"
 	}
 }
