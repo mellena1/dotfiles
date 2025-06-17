@@ -19,4 +19,6 @@ require("config.guessindent")
 
 require("config.harpoon")
 
+require("config.livepreview")
+
 require("config.mellena1")
