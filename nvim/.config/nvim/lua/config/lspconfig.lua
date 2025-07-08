@@ -5,6 +5,9 @@ local on_attach = require('lsp-format').on_attach
 local lspconfig = require('lspconfig')
 local util = lspconfig.util
 
+vim.keymap.set('n', '<M-CR>', vim.lsp.buf.code_action, { desc = 'Apply LSP code action' })
+vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
+
 lspconfig.gopls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
