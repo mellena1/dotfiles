@@ -3,7 +3,6 @@ require("config.lazy")
 require("config.lspconfig")
 require("config.mason")
 
-require("config.bufferline")
 require("config.cmp")
 require("config.telescope")
 require("config.tree")
