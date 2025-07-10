@@ -11,3 +11,7 @@ require("nvim-tree").setup({
 	}
 })
 require("lsp-file-operations").setup()
+
+local api = require("nvim-tree.api")
+
+vim.keymap.set('n', '<C-b>', api.tree.toggle, { desc = 'Toggle nvim-tree' })
