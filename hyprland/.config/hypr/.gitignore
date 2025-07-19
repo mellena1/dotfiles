@@ -1,6 +1,9 @@
 # Each system needs to define its own monitor config
 monitor.conf
 
+# System specific autostart apps
+autostart.conf
+
 # Each system should define its own wallpaper setup
 hyprpaper.conf
 wallpapers/
