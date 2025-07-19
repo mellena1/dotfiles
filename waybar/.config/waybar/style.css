@@ -57,10 +57,12 @@
   border-width: 0px;
 }
 
-#custpm-temperature.critical,
-#pulseaudio.muted {
+#custpm-temperature.critical {
   color: #FF0000;
-  padding-top: 0;
+}
+
+#pulseaudio.muted {
+  color: #787c80;
 }
 
 #bluetooth:hover,
