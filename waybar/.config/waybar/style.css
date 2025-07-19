@@ -1,0 +1,105 @@
+
+* {
+  font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Free Solid";
+  font-weight: bold;
+  font-size: 14px;
+  color: #dcdfe1;
+}
+
+#waybar {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  box-shadow: none;
+}
+
+#workspaces {
+  background-color: rgba(33, 33, 33, 0.7);
+  padding: 4px 6px; 
+  margin-top: 6px; 
+  margin-left: 6px; 
+  margin-right: 6px; 
+  border-radius: 10px;
+  border-width: 0px;
+}
+
+#clock,
+#tray {
+  background-color: rgba(33, 33, 33, 0.7);
+  margin-top: 6px; 
+  margin-right: 6px;
+  padding: 4px 8px;
+  border-radius: 0 10px 10px 0;
+  border-width: 0px;
+}
+
+#custom-power,
+#custom-temperature{
+  background-color: rgba(33, 33, 33, 0.7);
+  margin-top: 6px; 
+  margin-left: 6px;
+  padding: 4px 8px; 
+  border-radius: 10px 0 0 10px;
+  border-width: 0px;
+}
+
+#custom-reboot,
+#bluetooth,
+#battery,
+#pulseaudio,
+#backlight,
+#network,
+#memory,
+#cpu,
+#window {
+  background-color: rgba(33, 33, 33, 0.7);
+  margin-top: 6px; 
+  padding: 4px 8px; 
+  border-width: 0px;
+}
+
+#custpm-temperature.critical,
+#pulseaudio.muted {
+  color: #FF0000;
+  padding-top: 0;
+}
+
+#bluetooth:hover,
+#network:hover,
+/* #tray:hover, */
+#backlight:hover,
+#battery:hover,
+#pulseaudio:hover,
+#custom-temperature:hover,
+#memory:hover,
+#cpu:hover,
+#clock:hover,
+#custom-power:hover,
+/* #workspaces:hover, */
+#window:hover {
+  background-color: rgba(245, 124, 0, 0.8);
+}
+
+#workspaces button:hover{
+  background-color: rgba(245, 124, 0, 0.2);
+  padding: 2px 8px;
+  margin: 0 2px;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  background-color: #f57c00;
+  color: #ffffff;
+  padding: 2px 8px;
+  margin: 0 2px;
+  border-radius: 10px;
+}
+
+#workspaces button {
+  background: transparent;
+  border: none;
+  color: #888888;
+  padding: 2px 8px;
+  margin: 0 2px;
+  font-weight: bold;
+}
+

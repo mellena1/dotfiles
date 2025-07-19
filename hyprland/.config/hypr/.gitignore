@@ -1,2 +1,6 @@
 # Each system needs to define its own monitor config
 monitor.conf
+
+# Each system should define its own wallpaper setup
+hyprpaper.conf
+wallpapers/

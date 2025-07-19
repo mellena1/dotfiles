@@ -1,0 +1,131 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 16,
+    "spacing": 0,
+    "modules-left": [
+      "custom/power",
+      "hyprland/window",
+      "tray"
+    ],
+    "modules-center": [
+      "hyprland/workspaces"
+    ],
+    "modules-right": [
+      "custom/temperature",
+      "cpu",
+      "memory",
+      "network",
+      "pulseaudio",
+      "backlight",
+      "keyboard-state",
+      "battery",
+      "battery#bat2",
+      "clock"
+    ],
+    "hyprland/window": {
+      "format": "{class}",
+      "icon": true,
+      "icon-size": 20,
+      "separate-outputs": true,
+      "max-length": 64,
+      "rewrite": {
+        "^(?!.*\\S).*": "mellena1",
+        "com.mitchellh.ghostty": "Ghostty",
+        "google-chrome": "Google Chrome"
+      }
+    },
+    "custom/power": {
+      "format" : "⏻ ",
+		  "tooltip": false,
+		  "on-click": "rofi -show p -modi p:rofi-power-menu"
+    },
+    "keyboard-state": {
+      "numlock": true,
+      "capslock": true,
+      "format": "{name} {icon}",
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
+    },
+    "tray": {
+      "icon-size": 17,
+      "spacing": 6
+    },
+    "clock": {
+      "format": "{:%A %B %d %OI:%M %p}",
+      "tooltip-format": "<big>{calendar}</big>"
+    },
+    "cpu": {
+      "format": "<span color='#4287f5'> </span> {usage}%"
+    },
+    "memory": {
+      "format": "<span color='#8A2BE2'> </span> {}%"
+    },
+    "custom/temperature": {
+      "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
+      "format": "<span color='#FFA500'></span> {}°C",
+      "interval": 5
+    },
+    "backlight": {
+      "format": "{icon} {percent}%",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "battery": {
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": " {capacity}%",
+      "format-plugged": " {capacity}%",
+      "format-alt": "{icon} {time}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "battery#bat2": {
+      "bat": "BAT2"
+    },
+    "network": {
+      "format-wifi": "<span color='#00FFFF'> 󰤨 </span> {essid} ({signalStrength}%)",
+      "format-ethernet": "<span color='#7FFF00'> </span> {ipaddr}",
+      "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
+      "format-linked": "<span color='#FFA500'> 󱘖 </span> {ifname} (No IP)",
+      "format-disconnected": "<span color='#FF4040'>  </span>Disconnected ",
+      "format-alt": "<span color='#00FFFF'> 󰤨 </span>{signalStrength}% "
+    },
+    "pulseaudio": {
+      "scroll-step": 5,
+      "format": "{icon}  {volume}% {format_source}",
+      "format-bluetooth": " {icon} {volume}% {format_source}",
+      "format-bluetooth-muted": "  {icon} {format_source}",
+      "format-muted": "  {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "format-icons": {
+        "default": [
+          "",
+          "",
+          ""
+        ]
+      },
+      "on-click": "pavucontrol",
+      "on-click-right": "foot -a pw-top pw-top"
+    }
+  }
