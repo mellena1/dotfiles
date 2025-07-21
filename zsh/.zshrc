@@ -1,3 +1,8 @@
+# Need to source from bashrc on work machine, probably could make this better
+if [[ $(uname) == "Darwin" ]]; then
+  source $HOME/.bashrc
+fi
+
 source $HOME/.zsh-alias
 source $HOME/.zshrc-mine
 

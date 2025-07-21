@@ -8,3 +8,5 @@ export KOTLIN_HOME=/usr/share/kotlin
 
 # java
 export JAVA_HOME=/usr/lib/jvm/default
+
+export EDITOR=nvim
