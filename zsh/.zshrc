@@ -12,7 +12,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/mellena1/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # install omz if it does not exist
 if [ ! -d "$ZSH" ]; then
