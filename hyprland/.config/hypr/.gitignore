@@ -7,3 +7,6 @@ autostart.conf
 # Each system should define its own wallpaper setup
 hyprpaper.conf
 wallpapers/
+
+# machine specific hyprlock configs
+hyprlock-extra.conf
