@@ -53,7 +53,7 @@
       "spacing": 6
     },
     "clock": {
-      "format": "{:%A %B %d %OI:%M %p}",
+      "format": "{:%A %B %d %I:%M %p}",
       "tooltip-format": "<big>{calendar}</big>"
     },
     "cpu": {
