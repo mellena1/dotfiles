@@ -17,7 +17,8 @@ neotest.setup({
 		require("neotest-rust") {
 			args = { "--no-capture" }
 		},
-		require("neotest-go")
+		require("neotest-go"),
+		require("neotest-bun")
 	}
 })
 

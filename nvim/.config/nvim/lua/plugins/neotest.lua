@@ -13,5 +13,8 @@ return {
 	},
 	{
 		"nvim-neotest/neotest-go"
+	},
+	{
+		"arthur944/neotest-bun"
 	}
 }
