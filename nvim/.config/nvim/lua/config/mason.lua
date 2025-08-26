@@ -8,5 +8,6 @@ require("mason-lspconfig").setup {
 		"ts_ls",
 		"eslint",
 		"pylsp",
+		"kotlin_lsp",
 	},
 }

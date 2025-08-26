@@ -54,3 +54,5 @@ lspconfig.eslint.setup {
 }
 
 lspconfig.pylsp.setup {}
+
+lspconfig.kotlin_lsp.setup {}
