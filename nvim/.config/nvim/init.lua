@@ -1,5 +1,6 @@
 require("config.lazy")
 
+require("config.conform")
 require("config.lspconfig")
 require("config.mason")
 
