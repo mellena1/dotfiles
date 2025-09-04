@@ -18,7 +18,8 @@ neotest.setup({
 			args = { "--no-capture" }
 		},
 		require("neotest-go"),
-		require("neotest-bun")
+		require("neotest-bun"),
+		require("neotest-gradle"),
 	}
 })
 

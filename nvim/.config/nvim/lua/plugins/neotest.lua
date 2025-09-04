@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-neotest/neotest",
+		branch = "fix/subprocess/load-adapters",
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
@@ -16,5 +17,8 @@ return {
 	},
 	{
 		"arthur944/neotest-bun"
+	},
+	{
+		"weilbith/neotest-gradle"
 	}
 }

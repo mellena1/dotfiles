@@ -7,7 +7,7 @@ require("conform").setup({
 		rust = { "rustfmt", lsp_format = "fallback" },
 		-- Conform will run the first available formatter
 		javascript = { "prettierd", "prettier", stop_after_first = true },
-		kotlin = { "spotless_gradle" }
+		kotlin = { "spotless_gradle", lsp_format = "never" }
 	},
 	format_on_save = {
 		-- Need to have long timeout because spotless is so slow :(

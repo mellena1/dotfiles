@@ -25,6 +25,7 @@ return {
 					"json",
 					"terraform",
 					"yaml",
+					"java",
 					"kotlin",
 				},
 				sync_install = false,
