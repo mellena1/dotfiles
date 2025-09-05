@@ -1,5 +1,4 @@
 # Each system needs to define its own monitor config
-monitor.conf
 monitors.conf
 workspaces.conf
 
