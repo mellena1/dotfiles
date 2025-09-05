@@ -24,3 +24,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		vim.lsp.buf.format({ async = false })
 	end
 })
+
+-- Cursor setup
+vim.opt.guicursor = {
+	"n-v-c:block-Cursor/lCursor",
+	"i:ver25-iCursor/lCursor",
+	"r-cr-o:hor20-Cursor/lCursor",
+}

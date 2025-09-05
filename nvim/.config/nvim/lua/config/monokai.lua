@@ -6,6 +6,12 @@ monokai.setup {
 		Normal = {
 			bg = palette.black
 		},
+		Cursor = {
+			bg = palette.orange,
+		},
+		iCursor = {
+			bg = palette.orange
+		},
 		LineNr = {
 			bg = palette.black
 		}
