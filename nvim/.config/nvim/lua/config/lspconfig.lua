@@ -55,4 +55,4 @@ lspconfig.eslint.setup {
 
 lspconfig.pylsp.setup {}
 
-vim.lsp.enable("kotlin_lsp")
+lspconfig.kotlin_lsp.setup {}
