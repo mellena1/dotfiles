@@ -1,58 +1,25 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lsp-format').setup {}
-local on_attach = require('lsp-format').on_attach
-
-local lspconfig = require('lspconfig')
-local util = lspconfig.util
 
 vim.keymap.set('n', '<M-CR>', vim.lsp.buf.code_action, { desc = 'Apply LSP code action' })
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
 
-lspconfig.gopls.setup {
+vim.lsp.config('*', {
 	capabilities = capabilities,
-	on_attach = on_attach,
-}
+})
 
-lspconfig.lua_ls.setup {
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = {
-		Lua = {
-			format = {
-				enable = true,
-				defaultConfig = {
-					indent_style = "space",
-					indent_size = "2",
-				},
-			},
-		},
-	},
-}
-
-lspconfig.rust_analyzer.setup {
-	capabilities = capabilities,
-	on_attach = on_attach,
-}
-
-lspconfig.terraformls.setup {
-	capabilities = capabilities,
-	on_attach = on_attach,
-}
-
-lspconfig.ts_ls.setup {
-	capabilities = capabilities,
-	-- no on_attach here bc we want to format with eslint
-}
-
-lspconfig.eslint.setup {
-	capabilities = capabilities,
-	on_attach = on_attach,
+vim.lsp.config('eslint', {
 	root_dir = function(fname)
 		-- our project root_dir is wherever tsconfig.json lives
-		return util.root_pattern('tsconfig.json')(fname)
+		return vim.fs.root(fname, 'tsconfig.json')
 	end,
-}
+})
 
-lspconfig.pylsp.setup {}
-
-lspconfig.kotlin_lsp.setup {}
+-- Enable all servers
+vim.lsp.enable('gopls')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('terraformls')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('eslint')
+vim.lsp.enable('pylsp')
+vim.lsp.enable('kotlin_lsp')
