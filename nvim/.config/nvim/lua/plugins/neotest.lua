@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-neotest/neotest",
-		commit = "52fca671",
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
