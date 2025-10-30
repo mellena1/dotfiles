@@ -9,5 +9,6 @@ require("mason-lspconfig").setup {
 		"eslint",
 		"pylsp",
 		"kotlin_lsp",
+		"zls",
 	},
 }
