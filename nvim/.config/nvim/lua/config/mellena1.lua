@@ -1,6 +1,9 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Terminal title on
+vim.opt.title = true
+
 -- Auto format Go files
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.go",
