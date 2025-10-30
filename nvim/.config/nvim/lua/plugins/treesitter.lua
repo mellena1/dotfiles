@@ -32,6 +32,7 @@ return {
 					"kotlin",
 					"json",
 					"jsonc",
+					"zig",
 				},
 				sync_install = false,
 				highlight = { enable = true },
