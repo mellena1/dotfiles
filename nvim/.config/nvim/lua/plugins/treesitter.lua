@@ -33,6 +33,7 @@ return {
 					"json",
 					"jsonc",
 					"zig",
+					"graphql",
 				},
 				sync_install = false,
 				highlight = { enable = true },

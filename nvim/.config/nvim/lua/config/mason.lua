@@ -10,5 +10,7 @@ require("mason-lspconfig").setup {
 		"pylsp",
 		"kotlin_lsp",
 		"zls",
+		"graphql",
+		"gradle_ls",
 	},
 }
