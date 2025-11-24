@@ -1,4 +1,4 @@
-theme = Paul Millr
-font-size = 11
+theme = Paul Millr Brighter Cursor
+font-size = 13
 split-divider-color = gray
 keybind = shift+enter=text:\x1b\r
