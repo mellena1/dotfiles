@@ -31,7 +31,8 @@
       "rewrite": {
         "^(?!.*\\S).*": "mellena1",
         "com.mitchellh.ghostty": "Ghostty",
-        "google-chrome": "Google Chrome"
+        "google-chrome": "Google Chrome",
+        "org.kde.dolphin": "Dolphin"
       }
     },
     "custom/power": {
