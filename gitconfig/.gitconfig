@@ -1,0 +1,8 @@
+[user]
+	name = Andrew Mellen
+	email = andrew_mellen@icloud.com
+[init]
+	defaultBranch = main
+
+[include]
+	path = ~/.gitconfig.local
