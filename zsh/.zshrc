@@ -21,6 +21,16 @@ if [ ! -d $ZSH/custom/themes/powerlevel10k ]; then
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
 fi
 
+# install zsh-autosuggestions if it does not exist
+if [ ! -d "$ZSH/custom/plugins/zsh-autosuggestions" ]; then
+	git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH/custom/plugins/zsh-autosuggestions
+fi
+
+# install zsh-syntax-highlighting if it does not exist
+if [ ! -d "$ZSH/custom/plugins/zsh-syntax-highlighting" ]; then
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
+fi
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -88,7 +98,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose helm kubectl kubectx fzf)
+plugins=(git docker docker-compose helm kubectl kubectx fzf zsh-autosuggestions zsh-syntax-highlighting)
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker#settings
 zstyle ':completion:*:*:docker:*' option-stacking yes
