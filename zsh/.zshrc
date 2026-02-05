@@ -135,10 +135,9 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source $HOME/.zsh-alias
-source $HOME/.zshrc-mine
+[ -f $HOME/.zsh-alias ] && source $HOME/.zsh-alias
+[ -f $HOME/.zshrc-mine ] && source $HOME/.zshrc-mine
 
-# Need to source from bashrc on work machine, probably could make this better
-if [[ $(uname) == "Darwin" ]]; then
-  source $HOME/.bashrc
-fi
+# Any machine specific setup things
+[ -f $HOME/.zshrc-local ] && source $HOME/.zshrc-local
+
