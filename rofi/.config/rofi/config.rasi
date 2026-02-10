@@ -1,5 +1,49 @@
 configuration {
-	modi: "drun";
-	show-icons: true;
+    modi: "combi,calc,p:rofi-power-menu";
+    show-icons: true;
+    icon-theme: "Papirus";
+    font: "JetBrainsMono Nerd Font 12";
+    location: 0;
+    anchor: center;
+    fullscreen: false;
+    width: 800;
+    lines: 15;
+    columns: 1;
+    
+    // Combi mode - combines drun + run
+    combi-modi: "drun,run";
+    combi-hide-mode-prefix: false;
+    
+    // Behavior
+    case-sensitive: false;
+    matching: "fuzzy";
+    sorting-method: "fzf";
+    sort: true;
+    
+    // Calculator settings
+    calc-command: "echo '{result}' | wl-copy";
+    
+    // Display names
+    display-combi: " Search ";
+    display-drun: " Apps ";
+    display-run: " Commands ";
+    display-calc: " Calc ";
+    display-p: " Power ";
+    
+    // Terminal for commands
+    terminal: "ghostty";
+    
+    // Cycle through results
+    cycle: true;
+    
+    // Scrollbar
+    hide-scrollbar: true;
+    
+    // Click outside to close
+    click-to-exit: true;
+    
+    // Max history size
+    max-history-size: 50;
 }
+
 @theme "rounded-orange-dark"

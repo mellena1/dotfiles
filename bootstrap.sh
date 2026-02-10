@@ -130,6 +130,76 @@ install_fzf() {
     esac
 }
 
+# Install rofi-calc plugin
+install_rofi_calc() {
+    if command_exists rofi && rofi -help 2>&1 | grep -q "calc"; then
+        info "rofi-calc already installed"
+        return
+    fi
+
+    info "Installing rofi-calc..."
+    case "$OS" in
+        Linux)
+            if command_exists yay; then
+                yay -S --noconfirm rofi-calc
+            elif command_exists paru; then
+                paru -S --noconfirm rofi-calc
+            elif command_exists pacman; then
+                # Try to install from AUR manually
+                info "Installing rofi-calc from AUR..."
+                local tmpdir=$(mktemp -d)
+                git clone https://aur.archlinux.org/rofi-calc.git "$tmpdir/rofi-calc"
+                cd "$tmpdir/rofi-calc"
+                makepkg -si --noconfirm
+                cd - > /dev/null
+                rm -rf "$tmpdir"
+            else
+                warn "rofi-calc requires an AUR helper (yay/paru) on Arch-based systems"
+                warn "Please install manually: https://github.com/svenstaro/rofi-calc"
+            fi
+            ;;
+        macOS)
+            warn "rofi-calc not available on macOS via Homebrew"
+            warn "Please install manually if needed"
+            ;;
+    esac
+}
+
+# Install rofi-power-menu
+install_rofi_power_menu() {
+    if command_exists rofi-power-menu; then
+        info "rofi-power-menu already installed"
+        return
+    fi
+
+    info "Installing rofi-power-menu..."
+    case "$OS" in
+        Linux)
+            if command_exists yay; then
+                yay -S --noconfirm rofi-power-menu
+            elif command_exists paru; then
+                paru -S --noconfirm rofi-power-menu
+            elif command_exists pacman; then
+                # Try to install from AUR manually
+                info "Installing rofi-power-menu from AUR..."
+                local tmpdir=$(mktemp -d)
+                git clone https://aur.archlinux.org/rofi-power-menu.git "$tmpdir/rofi-power-menu"
+                cd "$tmpdir/rofi-power-menu"
+                makepkg -si --noconfirm
+                cd - > /dev/null
+                rm -rf "$tmpdir"
+            else
+                warn "rofi-power-menu requires an AUR helper (yay/paru) on Arch-based systems"
+                warn "Please install manually: https://github.com/jluttine/rofi-power-menu"
+            fi
+            ;;
+        macOS)
+            warn "rofi-power-menu not available on macOS via Homebrew"
+            warn "Please install manually if needed"
+            ;;
+    esac
+}
+
 # Backup existing configs
 backup_configs() {
     local backup_dir="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
@@ -211,6 +281,8 @@ main() {
     info "Installing dependencies..."
     install_stow
     install_fzf
+    install_rofi_calc
+    install_rofi_power_menu
 
     info "Setting up shell environment..."
     install_oh_my_zsh
