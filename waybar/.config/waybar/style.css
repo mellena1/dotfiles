@@ -33,12 +33,19 @@
 }
 
 #custom-power,
-#custom-temperature{
+#custom-cpu{
   background-color: rgba(33, 33, 33, 0.7);
-  margin-top: 6px; 
+  margin-top: 6px;
   margin-left: 6px;
-  padding: 4px 8px; 
+  padding: 4px 8px;
   border-radius: 10px 0 0 10px;
+  border-width: 0px;
+}
+
+#custom-gpu {
+  background-color: rgba(33, 33, 33, 0.7);
+  margin-top: 6px;
+  padding: 4px 8px;
   border-width: 0px;
 }
 
@@ -56,7 +63,7 @@
   border-width: 0px;
 }
 
-#custom-temperature.critical {
+#custom-cpu.critical {
   color: #FF0000;
 }
 
@@ -70,7 +77,8 @@
 #backlight:hover,
 #battery:hover,
 #pulseaudio:hover,
-#custom-temperature:hover,
+#custom-cpu:hover,
+#custom-gpu:hover,
 #memory:hover,
 #cpu:hover,
 #clock:hover,

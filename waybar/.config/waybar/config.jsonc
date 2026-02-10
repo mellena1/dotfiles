@@ -1,5 +1,4 @@
 {
-    "include": ["temperature.jsonc"],
     "layer": "top",
     "position": "top",
     "height": 16,
@@ -13,8 +12,8 @@
       "hyprland/workspaces"
     ],
     "modules-right": [
-      "custom/temperature",
-      "cpu",
+      "custom/cpu",
+      "custom/gpu",
       "memory",
       "network",
       "pulseaudio",
@@ -123,5 +122,18 @@
       },
       "on-click": "pavucontrol",
       "on-click-right": "foot -a pw-top pw-top"
+    },
+    "custom/cpu": {
+      "exec": "bash /home/mellena1/.config/waybar/scripts/cpu-module.sh",
+      "format": "<span color='#4287f5'> </span> {}",
+      "return-type": "json",
+      "interval": 5
+    },
+    "custom/gpu": {
+      "exec": "bash /home/mellena1/.config/waybar/scripts/gpu-module.sh 2>/dev/null",
+      "exec-if": "command -v nvidia-smi",
+      "format": "<span color='#76b900'>󰾲</span> {}",
+      "return-type": "json",
+      "interval": 5
     }
   }
