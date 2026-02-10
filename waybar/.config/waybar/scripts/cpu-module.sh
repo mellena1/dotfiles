@@ -8,7 +8,7 @@ CPU_USAGE=$(cat /proc/stat | awk '/cpu / {print int(($2+$4)*100/($2+$4+$5))}')
 CPU_TEMP=""
 for sensor in "k10temp-pci-00c3" "coretemp-isa-0000" "acpitz-acpi-0"; do
     if sensors "$sensor" &>/dev/null; then
-        CPU_TEMP=$(sensors "$sensor" 2>/dev/null | awk '/Tccd1|Tdie|Package id 0|temp1/ {print int($2); exit}')
+        CPU_TEMP=$(sensors "$sensor" 2>/dev/null | awk '/Package id 0/ {print int($4); exit} /Tccd1|Tdie|temp1/ {print int($2); exit}')
         [ -n "$CPU_TEMP" ] && break
     fi
 done
