@@ -11,3 +11,6 @@ wallpapers/
 
 # machine specific hyprlock configs
 hyprlock-extra.conf
+
+# battery status script
+battery-status.sh
