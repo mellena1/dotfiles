@@ -16,6 +16,20 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
+# bat configuration
+if command -v bat &> /dev/null; then
+    export BAT_THEME="Monokai Extended"
+    export BAT_STYLE="numbers,changes,header,grid"
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
+fi
+
+# fd configuration
+if command -v fd &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
 # eza colors - matched to ghostty "Paul Millr Brighter Cursor" theme
 # Using bright, vibrant colors to match the terminal palette:
 # - Cyan: #66ccff / #7adff2 (ANSI 14)

@@ -178,6 +178,102 @@ install_eza() {
     esac
 }
 
+# Install bat
+install_bat() {
+    if command_exists bat; then
+        info "bat already installed"
+        return
+    fi
+
+    info "Installing bat..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm bat
+            elif command_exists apt-get; then
+                sudo apt-get install -y bat
+            elif command_exists dnf; then
+                sudo dnf install -y bat
+            fi
+            ;;
+        macOS)
+            brew install bat
+            ;;
+    esac
+}
+
+# Install fd
+install_fd() {
+    if command_exists fd; then
+        info "fd already installed"
+        return
+    fi
+
+    info "Installing fd..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm fd
+            elif command_exists apt-get; then
+                sudo apt-get install -y fd-find
+            elif command_exists dnf; then
+                sudo dnf install -y fd-find
+            fi
+            ;;
+        macOS)
+            brew install fd
+            ;;
+    esac
+}
+
+# Install delta
+install_delta() {
+    if command_exists delta; then
+        info "delta already installed"
+        return
+    fi
+
+    info "Installing delta..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm git-delta
+            elif command_exists apt-get; then
+                sudo apt-get install -y git-delta
+            elif command_exists dnf; then
+                sudo dnf install -y git-delta
+            fi
+            ;;
+        macOS)
+            brew install git-delta
+            ;;
+    esac
+}
+
+# Install btop
+install_btop() {
+    if command_exists btop; then
+        info "btop already installed"
+        return
+    fi
+
+    info "Installing btop..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm btop
+            elif command_exists apt-get; then
+                sudo apt-get install -y btop
+            elif command_exists dnf; then
+                sudo dnf install -y btop
+            fi
+            ;;
+        macOS)
+            brew install btop
+            ;;
+    esac
+}
+
 # Install rofi-calc plugin
 install_rofi_calc() {
     if command_exists rofi && rofi -help 2>&1 | grep -q "calc"; then
@@ -331,6 +427,10 @@ main() {
     install_fzf
     install_zoxide
     install_eza
+    install_bat
+    install_fd
+    install_delta
+    install_btop
     install_rofi_calc
     install_rofi_power_menu
 
