@@ -1,2 +1,11 @@
 alias pgadmin="docker run -p 5050:80 -v /home/mellena1/.pgadmin:/var/lib/pgadmin -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=root dpage/pgadmin4"
 alias yay="PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl yay"
+
+# eza aliases (modern replacement for ls)
+if command -v eza &> /dev/null; then
+    alias ls="eza --icons"
+    alias ll="eza --icons --long --header --git"
+    alias la="eza --icons --long --all --header --git"
+    alias lt="eza --icons --tree --level=2"
+    alias lta="eza --icons --tree --all --level=2"
+fi

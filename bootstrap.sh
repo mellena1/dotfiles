@@ -154,6 +154,30 @@ install_zoxide() {
     esac
 }
 
+# Install eza
+install_eza() {
+    if command_exists eza; then
+        info "eza already installed"
+        return
+    fi
+
+    info "Installing eza..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm eza
+            elif command_exists apt-get; then
+                sudo apt-get install -y eza
+            elif command_exists dnf; then
+                sudo dnf install -y eza
+            fi
+            ;;
+        macOS)
+            brew install eza
+            ;;
+    esac
+}
+
 # Install rofi-calc plugin
 install_rofi_calc() {
     if command_exists rofi && rofi -help 2>&1 | grep -q "calc"; then
@@ -306,6 +330,7 @@ main() {
     install_stow
     install_fzf
     install_zoxide
+    install_eza
     install_rofi_calc
     install_rofi_power_menu
 
