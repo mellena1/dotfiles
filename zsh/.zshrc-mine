@@ -10,3 +10,8 @@ export KOTLIN_HOME=/usr/share/kotlin
 export JAVA_HOME=/usr/lib/jvm/default
 
 export EDITOR=nvim
+
+# zoxide
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi

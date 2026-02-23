@@ -130,6 +130,30 @@ install_fzf() {
     esac
 }
 
+# Install zoxide
+install_zoxide() {
+    if command_exists zoxide; then
+        info "zoxide already installed"
+        return
+    fi
+
+    info "Installing zoxide..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm zoxide
+            elif command_exists apt-get; then
+                sudo apt-get install -y zoxide
+            elif command_exists dnf; then
+                sudo dnf install -y zoxide
+            fi
+            ;;
+        macOS)
+            brew install zoxide
+            ;;
+    esac
+}
+
 # Install rofi-calc plugin
 install_rofi_calc() {
     if command_exists rofi && rofi -help 2>&1 | grep -q "calc"; then
@@ -281,6 +305,7 @@ main() {
     info "Installing dependencies..."
     install_stow
     install_fzf
+    install_zoxide
     install_rofi_calc
     install_rofi_power_menu
 
