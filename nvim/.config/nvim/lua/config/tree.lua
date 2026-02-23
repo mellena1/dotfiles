@@ -8,7 +8,10 @@ vim.opt.termguicolors = true
 require("nvim-tree").setup({
 	filters = {
 		git_ignored = false,
-	}
+	},
+	renderer = {
+		group_empty = true,
+	},
 })
 require("lsp-file-operations").setup()
 
