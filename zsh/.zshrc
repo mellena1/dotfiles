@@ -115,9 +115,9 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[ -f $HOME/.zsh-alias ] && source $HOME/.zsh-alias
-[ -f $HOME/.zshrc-mine ] && source $HOME/.zshrc-mine
-
 # Any machine specific setup things
 [ -f $HOME/.zshrc-local ] && source $HOME/.zshrc-local
+
+[ -f $HOME/.zsh-alias ] && source $HOME/.zsh-alias
+[ -f $HOME/.zshrc-mine ] && source $HOME/.zshrc-mine
 
