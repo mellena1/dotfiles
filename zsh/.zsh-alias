@@ -21,9 +21,3 @@ fi
 if command -v fd &> /dev/null; then
     alias find="fd"
 fi
-
-# btop alias (modern replacement for top/htop)
-if command -v btop &> /dev/null; then
-    alias top="btop"
-    alias htop="btop"
-fi
