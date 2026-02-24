@@ -19,6 +19,13 @@ export NVM_DIR="$HOME/.nvm"
 # zoxide
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
+    # Ctrl+G for interactive directory picker
+    function zi-widget() {
+        zi
+        zle reset-prompt
+    }
+    zle -N zi-widget
+    bindkey '^g' zi-widget
 fi
 
 # bat configuration
