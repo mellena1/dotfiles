@@ -34,3 +34,8 @@ vim.opt.guicursor = {
 	"i:ver25-iCursor/lCursor",
 	"r-cr-o:hor20-Cursor/lCursor",
 }
+
+-- Clipboard keybindings
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { desc = "Copy line to clipboard" })
