@@ -10,8 +10,8 @@ configuration {
     lines: 15;
     columns: 1;
     
-    // Combi mode - combines drun + run
-    combi-modi: "drun,run";
+    // Combi mode - just drun
+    combi-modi: "drun";
     combi-hide-mode-prefix: false;
     
     // Behavior
