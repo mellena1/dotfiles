@@ -274,6 +274,54 @@ install_btop() {
     esac
 }
 
+# Install duf
+install_duf() {
+    if command_exists duf; then
+        info "duf already installed"
+        return
+    fi
+
+    info "Installing duf..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm duf
+            elif command_exists apt-get; then
+                sudo apt-get install -y duf
+            elif command_exists dnf; then
+                sudo dnf install -y duf
+            fi
+            ;;
+        macOS)
+            brew install duf
+            ;;
+    esac
+}
+
+# Install dust
+install_dust() {
+    if command_exists dust; then
+        info "dust already installed"
+        return
+    fi
+
+    info "Installing dust..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm dust
+            elif command_exists apt-get; then
+                sudo apt-get install -y dust
+            elif command_exists dnf; then
+                sudo dnf install -y dust
+            fi
+            ;;
+        macOS)
+            brew install dust
+            ;;
+    esac
+}
+
 # Install rofi-calc plugin
 install_rofi_calc() {
     if command_exists rofi && rofi -help 2>&1 | grep -q "calc"; then
@@ -431,6 +479,8 @@ main() {
     install_fd
     install_delta
     install_btop
+    install_duf
+    install_dust
     install_rofi_calc
     install_rofi_power_menu
 
