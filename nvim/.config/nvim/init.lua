@@ -1,12 +1,12 @@
-require("config.lazy")
+require("config.packages")
 
 require("config.conform")
-require("config.lspconfig")
-require("config.mason")
-
 require("config.cmp")
+require("config.mason")
+require("config.lspconfig")
 require("config.telescope")
 require("config.tree")
+require("config.treesitter")
 require("config.neotest")
 
 require("config.gitsigns")

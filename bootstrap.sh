@@ -322,6 +322,30 @@ install_dust() {
     esac
 }
 
+# Install tree-sitter-cli
+install_tree_sitter_cli() {
+    if command_exists tree-sitter; then
+        info "tree-sitter-cli already installed"
+        return
+    fi
+
+    info "Installing tree-sitter-cli..."
+    case "$OS" in
+        Linux)
+            if command_exists pacman; then
+                sudo pacman -S --noconfirm tree-sitter-cli
+            elif command_exists apt-get; then
+                sudo apt-get install -y tree-sitter-cli
+            elif command_exists dnf; then
+                sudo dnf install -y tree-sitter-cli
+            fi
+            ;;
+        macOS)
+            brew install tree-sitter-cli
+            ;;
+    esac
+}
+
 # Install rofi-calc plugin
 install_rofi_calc() {
     if command_exists rofi && rofi -help 2>&1 | grep -q "calc"; then
@@ -481,6 +505,7 @@ main() {
     install_btop
     install_duf
     install_dust
+    install_tree_sitter_cli
     install_rofi_calc
     install_rofi_power_menu
 
