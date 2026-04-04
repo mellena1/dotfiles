@@ -32,7 +32,8 @@
         "^(?!.*\\S).*": "mellena1",
         "com.mitchellh.ghostty": "Ghostty",
         "google-chrome": "Google Chrome",
-        "org.kde.dolphin": "Dolphin"
+        "org.kde.dolphin": "Dolphin",
+        "com.libretro.RetroArch": "RetroArch"
       }
     },
     "custom/power": {
