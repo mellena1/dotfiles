@@ -2,3 +2,4 @@ theme = Paul Millr Brighter Cursor
 font-size = 13
 split-divider-color = gray
 keybind = shift+enter=text:\x1b\r
+config-file = config.local
