@@ -3,11 +3,11 @@ alias yay="PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin
 
 # eza aliases (modern replacement for ls)
 if command -v eza &> /dev/null; then
-    alias ls="eza --icons"
-    alias ll="eza --icons --long --header --git"
-    alias la="eza --icons --long --all --header --git"
-    alias lt="eza --icons --tree --level=2"
-    alias lta="eza --icons --tree --all --level=2"
+    alias ls="eza --icons=always"
+    alias ll="eza --icons=always --long --header --git"
+    alias la="eza --icons=always --long --all --header --git"
+    alias lt="eza --icons=always --tree --level=2"
+    alias lta="eza --icons=always --tree --all --level=2"
 fi
 
 # bat aliases (modern replacement for cat)
