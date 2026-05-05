@@ -1,3 +1,16 @@
+-- Truncate the LSP log on startup if it exceeds 100 MB to prevent unbounded growth
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		local log = vim.lsp.log.get_filename()
+		local max = 100 * 1024 * 1024 -- 100 MB
+		local stat = vim.uv.fs_stat(log)
+		if stat and stat.size > max then
+			local f = io.open(log, "w")
+			if f then f:close() end
+		end
+	end,
+})
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 vim.keymap.set('n', '<M-CR>', vim.lsp.buf.code_action, { desc = 'Apply LSP code action' })
