@@ -12,5 +12,6 @@ require("mason-lspconfig").setup {
 		"zls",
 		"graphql",
 		"gradle_ls",
+		"jdtls",
 	},
 }

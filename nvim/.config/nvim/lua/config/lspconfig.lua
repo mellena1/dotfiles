@@ -29,6 +29,13 @@ vim.lsp.config('eslint', {
 	end,
 })
 
+-- jdtls requires Java 21+ but JAVA_HOME may point to an older JVM
+vim.lsp.config('jdtls', {
+	cmd_env = {
+		JAVA_HOME = '/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home',
+	},
+})
+
 -- Enable all servers (lspconfig provides the base config via runtimepath)
 vim.lsp.enable({
 	'gopls',
@@ -42,4 +49,5 @@ vim.lsp.enable({
 	'zls',
 	'graphql',
 	'gradle_ls',
+	'jdtls',
 })
