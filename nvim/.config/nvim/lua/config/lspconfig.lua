@@ -30,11 +30,38 @@ vim.lsp.config('eslint', {
 })
 
 -- jdtls requires Java 21+ but JAVA_HOME may point to an older JVM
-vim.lsp.config('jdtls', {
-	cmd_env = {
-		JAVA_HOME = '/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home',
-	},
-})
+local function find_java_home_gte21()
+	if vim.fn.has('mac') == 1 then
+		-- -v 21+ returns the highest installed JVM >= 21
+		local out = vim.fn.system('/usr/libexec/java_home -v 21+ 2>/dev/null')
+		if vim.v.shell_error == 0 then
+			return vim.trim(out)
+		end
+	else
+		-- Glob for java-2X+ paths across common Linux layouts, pick highest version
+		for _, pattern in ipairs({
+			vim.fn.expand('~/.sdkman/candidates/java/2[1-9]*/'),
+			vim.fn.expand('~/.sdkman/candidates/java/[3-9][0-9]*/'),
+			'/usr/lib/jvm/java-2[1-9]-*',
+			'/usr/lib/jvm/temurin-2[1-9]',
+		}) do
+			local matches = vim.fn.glob(pattern, false, true)
+			table.sort(matches, function(a, b) return a > b end)
+			for _, dir in ipairs(matches) do
+				if vim.uv.fs_stat(dir) then
+					return dir
+				end
+			end
+		end
+	end
+end
+
+local java_home = find_java_home_gte21()
+if java_home then
+	vim.lsp.config('jdtls', {
+		cmd_env = { JAVA_HOME = java_home },
+	})
+end
 
 -- Enable all servers (lspconfig provides the base config via runtimepath)
 vim.lsp.enable({
