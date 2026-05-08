@@ -226,26 +226,35 @@ install_fd() {
     esac
 }
 
-# Install delta
-install_delta() {
-    if command_exists delta; then
-        info "delta already installed"
+# Install hunk
+install_hunk() {
+    if command_exists hunk; then
+        info "hunk already installed"
         return
     fi
 
-    info "Installing delta..."
+    info "Installing hunk..."
     case "$OS" in
         Linux)
-            if command_exists pacman; then
-                sudo pacman -S --noconfirm git-delta
-            elif command_exists apt-get; then
-                sudo apt-get install -y git-delta
-            elif command_exists dnf; then
-                sudo dnf install -y git-delta
+            if command_exists yay; then
+                yay -S --noconfirm hunk-bin
+            elif command_exists paru; then
+                paru -S --noconfirm hunk-bin
+            elif command_exists pacman; then
+                info "Installing hunk-bin from AUR..."
+                local tmpdir=$(mktemp -d)
+                git clone https://aur.archlinux.org/hunk-bin.git "$tmpdir/hunk-bin"
+                cd "$tmpdir/hunk-bin"
+                makepkg -si --noconfirm
+                cd - > /dev/null
+                rm -rf "$tmpdir"
+            else
+                warn "hunk not available via a known package manager, falling back to npm"
+                npm install -g @modem-dev/hunk
             fi
             ;;
         macOS)
-            brew install git-delta
+            npm install -g @modem-dev/hunk
             ;;
     esac
 }
@@ -501,7 +510,7 @@ main() {
     install_eza
     install_bat
     install_fd
-    install_delta
+    install_hunk
     install_btop
     install_duf
     install_dust
