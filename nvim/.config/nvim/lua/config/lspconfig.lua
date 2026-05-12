@@ -63,6 +63,26 @@ if java_home then
 	})
 end
 
+-- lua_ls: teach it about vim.* and hyprland hl.* globals
+vim.lsp.config('lua_ls', {
+	settings = {
+		Lua = {
+			runtime = { version = 'LuaJIT' },
+			diagnostics = {
+				globals = { 'vim' },
+			},
+			workspace = {
+				library = {
+					vim.env.VIMRUNTIME,
+					'/usr/share/hypr/stubs',
+				},
+				checkThirdParty = false,
+			},
+			telemetry = { enable = false },
+		},
+	},
+})
+
 -- Enable all servers (lspconfig provides the base config via runtimepath)
 vim.lsp.enable({
 	'gopls',

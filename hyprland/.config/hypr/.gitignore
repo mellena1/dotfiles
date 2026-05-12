@@ -1,9 +1,12 @@
 # Each system needs to define its own monitor config
-monitors.conf
-workspaces.conf
+monitors.lua
+workspaces.lua
 
 # System specific autostart apps
-autostart.conf
+autostart.lua
+
+# Machine-specific keybindings
+keybinds-local.lua
 
 # Each system should define its own wallpaper setup
 hyprpaper.conf
