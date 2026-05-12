@@ -78,15 +78,17 @@ hl.config({
 
 -- Layer rules: apply blur to specific layer surfaces
 hl.layer_rule({
-    name  = "waybar-blur",
-    blur  = true,
-    match = { namespace = "^(waybar|ignorealpha)$" }, -- regex match
+    name         = "waybar-blur",
+    blur         = true,
+    ignore_alpha = 0.5,
+    match        = { namespace = "waybar" },
 })
 
 hl.layer_rule({
-    name  = "rofi-blur",
-    blur  = true,
-    match = { namespace = "rofi" },
+    name         = "rofi-blur",
+    blur         = true,
+    ignore_alpha = 0.5,
+    match        = { namespace = "rofi" },
 })
 
 -- Animation curves (bezier only — springs also supported via { type = "spring", ... })
