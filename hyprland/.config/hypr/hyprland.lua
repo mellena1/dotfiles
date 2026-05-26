@@ -35,6 +35,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("SDL_VIDEODRIVER", "wayland")
 hl.env("XDG_MENU_PREFIX", "plasma-")
 
 -- Permissions for portal integration
@@ -253,11 +254,24 @@ hl.bind(mainMod .. " + SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m output --cli
 pcall(require, "keybinds-local")
 
 -- Window rules
--- Ignore maximize requests from all apps
+-- Suppress maximize requests, but exclude Steam/game windows so they can go fullscreen
 hl.window_rule({
     name           = "suppress-maximize-events",
-    match          = { class = ".*" },
+    match          = { class = "^(?!steam$|steam_app_|VR_Server).*$" },
     suppress_event = "maximize",
+})
+
+-- Steam: float popups and dialogs
+hl.window_rule({
+    name  = "steam-main-float",
+    match = { class = "steam", title = "^(Friends|Friends List|Settings|Chat|.* chat|Server Browser)$" },
+    float = true,
+})
+
+hl.window_rule({
+    name  = "steam-dialogs-float",
+    match = { class = "steam", xwayland = false, title = "^(?!Steam$).*$" },
+    float = true,
 })
 
 -- Fix dragging issues with XWayland apps
