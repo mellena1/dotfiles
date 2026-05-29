@@ -33,7 +33,9 @@
         "com.mitchellh.ghostty": "Ghostty",
         "google-chrome": "Google Chrome",
         "org.kde.dolphin": "Dolphin",
-        "com.libretro.RetroArch": "RetroArch"
+        "com.libretro.RetroArch": "RetroArch",
+        "discord": "Discord",
+        "steam": "Steam"
       }
     },
     "custom/power": {
