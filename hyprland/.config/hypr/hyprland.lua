@@ -24,6 +24,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("nextcloud")
     hl.exec_cmd("kbuildsycoca6")
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
+    hl.exec_cmd("$HOME/.config/hypr/scripts/gaming-inhibit.sh")
 end)
 
 -- Machine-specific autostart (gitignored)
