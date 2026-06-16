@@ -11,6 +11,9 @@ export JAVA_HOME=${JAVA_HOME:-/usr/lib/jvm/default}
 
 export EDITOR=nvim
 
+# Machine-specific opencode overrides, merged on top of the shared config
+[ -f $HOME/.config/opencode/opencode.local.jsonc ] && export OPENCODE_CONFIG="$HOME/.config/opencode/opencode.local.jsonc"
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
