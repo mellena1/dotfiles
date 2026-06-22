@@ -15,6 +15,7 @@
       "custom/cpu",
       "custom/gpu",
       "memory",
+      "idle_inhibitor",
       "network",
       "pulseaudio",
       "backlight",
@@ -138,5 +139,15 @@
       "format": "<span color='#76b900'>󰾲</span> {}",
       "return-type": "json",
       "interval": 5
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      },
+      "tooltip": true,
+      "tooltip-format-activated": "Idle inhibitor active",
+      "tooltip-format-deactivated": "Idle inhibitor inactive"
     }
   }

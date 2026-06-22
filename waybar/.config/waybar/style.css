@@ -56,7 +56,8 @@
 #network,
 #memory,
 #cpu,
-#window {
+#window,
+#idle_inhibitor {
   background-color: rgba(33, 33, 33, 0.7);
   margin-top: 6px; 
   padding: 4px 8px; 
@@ -84,7 +85,8 @@
 #clock:hover,
 #custom-power:hover,
 /* #workspaces:hover, */
-#window:hover {
+#window:hover,
+#idle_inhibitor:hover {
   background-color: rgba(245, 124, 0, 0.8);
 }
 
@@ -110,6 +112,10 @@
   padding: 2px 8px;
   margin: 0 2px;
   font-weight: bold;
+}
+
+#idle_inhibitor {
+  padding: 4px 12px 4px 4px;
 }
 
 #battery.warning {
