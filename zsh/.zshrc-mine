@@ -13,6 +13,7 @@ export EDITOR=nvim
 
 # Machine-specific opencode overrides, merged on top of the shared config
 [ -f $HOME/.config/opencode/opencode.local.jsonc ] && export OPENCODE_CONFIG="$HOME/.config/opencode/opencode.local.jsonc"
+[ -f $HOME/.config/opencode/tui.local.json ] && export OPENCODE_TUI_CONFIG="$HOME/.config/opencode/tui.local.json"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
