@@ -3,4 +3,4 @@ nvim/.config/nvim/nvim-pack-lock.json
 hyprland/.config/hypr/scripts/
 
 ghostty/.config/ghostty/config.local
-opencode/.config/opencode/opencode.local.jsonc
+opencode/.config/opencode/*.local.json*
