@@ -170,7 +170,7 @@ hl.config({
 
 hl.config({
     binds = {
-        movefocus_cycles_groupfirst = true,
+        movefocus_cycles_groupfirst = false,
     },
 })
 
