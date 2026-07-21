@@ -138,6 +138,43 @@ hl.config({
 })
 
 hl.config({
+    group = {
+        auto_group = true,
+        insert_after_current = true,
+        focus_removed_window = true,
+        col = {
+            border_active   = "rgba(f57c00cc)",
+            border_inactive = "rgba(212121b3)",
+        },
+        groupbar = {
+            enabled       = true,
+            render_titles = true,
+            scrolling     = false,
+            gradients     = true,
+            gradient_rounding = 10,
+            height        = 20,
+            indicator_height = 0,
+            gaps_in       = 3,
+            gaps_out      = 0,
+            rounding      = 10,
+            priority      = 3,
+            font_size     = 11,
+            text_color    = "rgba(ffffffff)",
+            col = {
+                active   = "rgba(f57c00cc)",
+                inactive = "rgba(424242cc)",
+            },
+        },
+    },
+})
+
+hl.config({
+    binds = {
+        movefocus_cycles_groupfirst = true,
+    },
+})
+
+hl.config({
     input = {
         kb_layout    = "us",
         kb_variant   = "",
@@ -190,6 +227,18 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("discord"))
+
+-- Tab groups
+hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
+hl.bind(mainMod .. " + TAB", hl.dsp.group.next())
+hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.group.prev())
+hl.bind(mainMod .. " + bracketleft", hl.dsp.group.move_window({ forward = false }))
+hl.bind(mainMod .. " + bracketright", hl.dsp.group.move_window({ forward = true }))
+hl.bind(mainMod .. " + CTRL + SHIFT + left", hl.dsp.window.move({ into_or_create_group = "left" }))
+hl.bind(mainMod .. " + CTRL + SHIFT + right", hl.dsp.window.move({ into_or_create_group = "right" }))
+hl.bind(mainMod .. " + CTRL + SHIFT + up", hl.dsp.window.move({ into_or_create_group = "up" }))
+hl.bind(mainMod .. " + CTRL + SHIFT + down", hl.dsp.window.move({ into_or_create_group = "down" }))
+hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ out_of_group = true }))
 
 -- Focus
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
