@@ -1,0 +1,13 @@
+[Unit]
+Description=Highly customizable Wayland bar for Sway and Wlroots based compositors
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+ExecStart=/usr/bin/waybar
+Slice=session.slice
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

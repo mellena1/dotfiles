@@ -1,0 +1,14 @@
+[Unit]
+Description=Setup gaming inhibitions for screen idle/lock
+After=graphical-session.target
+PartOf=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+ConditionPathExists=%h/.config/hypr/scripts/gaming-inhibit.sh
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/hypr/scripts/gaming-inhibit.sh
+Slice=session.slice
+
+[Install]
+WantedBy=graphical-session.target

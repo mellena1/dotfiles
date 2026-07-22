@@ -1,0 +1,13 @@
+[Unit]
+Description=Initialize PAM KWallet
+After=graphical-session.target
+PartOf=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/pam_kwallet_init
+Slice=session.slice
+
+[Install]
+WantedBy=graphical-session.target

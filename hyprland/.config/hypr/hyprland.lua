@@ -10,21 +10,10 @@ local fileManager = "dolphin"
 local menu        = "rofi -show combi -show-icons -theme rounded-orange-dark"
 local browser     = "google-chrome-stable"
 
--- Autostart: runs once on Hyprland startup
--- Uses hl.on("hyprland.start") — multiple callbacks are supported,
--- so autostart.lua (machine-specific) adds its own separately
+-- Autostart apps are now managed by systemd user services (uwsm).
+-- See ~/.config/systemd/user/ for the service files.
+-- Machine-specific autostart still loaded below via autostart.lua
 hl.on("hyprland.start", function()
-    hl.exec_cmd("/usr/lib/pam_kwallet_init")
-    hl.exec_cmd("systemctl --user start hyprpolkitagent")
-    hl.exec_cmd("hypridle")
-    hl.exec_cmd("hyprsunset")
-    hl.exec_cmd("hyprpaper")
-    hl.exec_cmd("waybar")
-    hl.exec_cmd("dunst")
-    hl.exec_cmd("nextcloud")
-    hl.exec_cmd("kbuildsycoca6")
-    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
-    hl.exec_cmd("$HOME/.config/hypr/scripts/gaming-inhibit.sh")
 end)
 
 -- Machine-specific autostart (gitignored)
