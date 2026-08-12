@@ -2,12 +2,34 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- fff ships a Rust core, so it needs a binary fetched on install/update.
+-- Must be registered before vim.pack.add so it also fires on first install.
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "fff.nvim" and (kind == "install" or kind == "update") then
+      if not ev.data.active then vim.cmd.packadd("fff.nvim") end
+      require("fff.download").download_or_build_binary()
+    end
+
+    -- Treesitter queries ship with the plugin but parsers are compiled locally,
+    -- so a plugin update leaves stale parsers that break queries at runtime.
+    if name == "nvim-treesitter" and kind == "update" then
+      if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
+      require("nvim-treesitter").update(nil, { summary = true })
+    end
+  end,
+})
+
 -- Load all plugins using vim.pack
 vim.pack.add({
   -- Telescope
   { src = "https://github.com/nvim-telescope/telescope.nvim", version = "v0.2.2" },
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/mrloop/telescope-git-branch.nvim",
+
+  -- Fuzzy finder
+  "https://github.com/dmtrKovalenko/fff.nvim",
 
   -- LSP
   "https://github.com/neovim/nvim-lspconfig",

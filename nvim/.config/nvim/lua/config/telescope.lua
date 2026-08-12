@@ -34,11 +34,8 @@ local function dynamic_telescope(builtin_func, opts)
 	builtin_func(opts)
 end
 
+-- Files and grep live in config/fff.lua; telescope keeps the pickers fff lacks.
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', function()
-	dynamic_telescope(builtin.find_files, { hidden = true })
-end, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', function() dynamic_telescope(builtin.live_grep) end, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', function() dynamic_telescope(builtin.buffers) end, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', function() dynamic_telescope(builtin.help_tags) end, { desc = 'Telescope help tags' })
 
