@@ -9,11 +9,19 @@ delete:
 	stow --verbose --target=$$HOME --delete */
 
 enable-services:
-	@for svc in $(SERVICES); do \
-		systemctl --user enable --now "$$svc"; \
-	done
+	@if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd/system ]; then \
+		for svc in $(SERVICES); do \
+			systemctl --user enable --now "$$svc"; \
+		done; \
+	else \
+		echo "systemd not running, skipping service enable"; \
+	fi
 
 disable-services:
-	@for svc in $(SERVICES); do \
-		systemctl --user disable --now "$$svc"; \
-	done
+	@if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd/system ]; then \
+		for svc in $(SERVICES); do \
+			systemctl --user disable --now "$$svc"; \
+		done; \
+	else \
+		echo "systemd not running, skipping service disable"; \
+	fi
