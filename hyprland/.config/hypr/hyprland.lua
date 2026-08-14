@@ -8,7 +8,7 @@ pcall(require, "workspaces")
 local terminal    = "ghostty"
 local fileManager = "dolphin"
 local menu        = "rofi -show combi -show-icons -theme rounded-orange-dark"
-local browser     = "google-chrome-stable"
+local browser     = "gtk-launch google-chrome"
 
 -- Autostart apps are now managed by systemd user services (uwsm).
 -- See ~/.config/systemd/user/ for the service files.

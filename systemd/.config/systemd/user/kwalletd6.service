@@ -1,13 +1,12 @@
 [Unit]
-Description=Setup gaming inhibitions for screen idle/lock
+Description=KDE Wallet Daemon
 After=graphical-session.target
 PartOf=graphical-session.target
 ConditionEnvironment=WAYLAND_DISPLAY
-ConditionPathExists=%h/.config/hypr/scripts/gaming-inhibit.sh
 
 [Service]
 Type=simple
-ExecStart=%h/.config/hypr/scripts/gaming-inhibit.sh
+ExecStart=/usr/bin/kwalletd6
 Slice=session.slice
 
 [Install]
