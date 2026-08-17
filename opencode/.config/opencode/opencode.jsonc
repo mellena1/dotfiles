@@ -1,9 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    ["@mellena1/opencode-auto-mode@0.2.2", {
-      "model": { "id": "deepseek-v4-flash", "providerID": "opencode-go" }
-    }]
+  "plugins": [
+    {
+      "package": "@mellena1/opencode-auto-mode@0.3.0",
+      "options": {
+        "model": { "id": "deepseek-v4-flash", "providerID": "opencode-go" }
+      }
+    }
   ],
   "permission": {
     "edit": "allow",
