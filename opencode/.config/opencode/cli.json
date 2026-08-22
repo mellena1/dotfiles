@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/tui.json",
   "plugins": [
-    "@mellena1/opencode-auto-mode@0.3.2"
+    "@mellena1/opencode-auto-mode@0.3.3"
   ]
 }
