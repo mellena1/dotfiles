@@ -12,9 +12,10 @@
   "websearch": {
     "provider": "random"
   },
-  // V2 ordered permission rules: earlier entries win over later ones.
-  // The shell catch-all "ask" is the fallback when auto-mode is disabled;
-  // while the plugin runs, its evaluate hook reviews everything anyway.
+  // V2 ordered permission rules (read by opencode2): earlier entries win
+  // over later ones. The shell catch-all "ask" is the fallback when
+  // auto-mode is disabled; while the plugin runs, its evaluate hook reviews
+  // everything unmatched anyway.
   "permissions": [
     { "action": "edit", "resource": "*", "effect": "allow" },
     { "action": "shell", "resource": "ls*", "effect": "allow" },
@@ -39,5 +40,35 @@
     { "action": "shell", "resource": "diff*", "effect": "allow" },
     { "action": "shell", "resource": "file*", "effect": "allow" },
     { "action": "shell", "resource": "*", "effect": "ask" }
-  ]
+  ],
+  // V1 permission map (read by opencode 1.x instances sharing this file).
+  // Keep in sync with "permissions" above; V2 prefers its own key when both
+  // are present, and V1 ignores the V2 array.
+  "permission": {
+    "edit": "allow",
+    "bash": {
+      "ls*": "allow",
+      "find*": "allow",
+      "mkdir*": "allow",
+      "cat*": "allow",
+      "pwd": "allow",
+      "echo*": "allow",
+      "head*": "allow",
+      "tail*": "allow",
+      "grep*": "allow",
+      "rg*": "allow",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "which*": "allow",
+      "cd *": "allow",
+      "wc*": "allow",
+      "sort*": "allow",
+      "uniq*": "allow",
+      "diff*": "allow",
+      "file*": "allow",
+      "*": "ask"
+    }
+  }
 }
