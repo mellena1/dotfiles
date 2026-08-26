@@ -4,7 +4,8 @@
     {
       "package": "@mellena1/opencode-auto-mode@0.4.3",
       "options": {
-        "model": { "id": "deepseek-v4-flash", "providerID": "opencode-go" }
+        "model": { "id": "deepseek-v4-flash", "providerID": "opencode-go" },
+        "review": "prompts"
       }
     }
   ],
