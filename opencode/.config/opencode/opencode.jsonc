@@ -2,37 +2,41 @@
   "$schema": "https://opencode.ai/config.json",
   "plugins": [
     {
-      "package": "@mellena1/opencode-auto-mode@0.3.7",
+      "package": "@mellena1/opencode-auto-mode@0.4.0",
       "options": {
         "model": { "id": "deepseek-v4-flash", "providerID": "opencode-go" }
       }
     }
   ],
-  "permission": {
-    "edit": "allow",
-    "bash": {
-      "ls*": "allow",
-      "find*": "allow",
-      "mkdir*": "allow",
-      "cat*": "allow",
-      "pwd": "allow",
-      "echo*": "allow",
-      "head*": "allow",
-      "tail*": "allow",
-      "grep*": "allow",
-      "rg*": "allow",
-      "git status*": "allow",
-      "git diff*": "allow",
-      "git log*": "allow",
-      "git show*": "allow",
-      "which*": "allow",
-      "cd *": "allow",
-      "wc*": "allow",
-      "sort*": "allow",
-      "uniq*": "allow",
-      "diff*": "allow",
-      "file*": "allow",
-      "*": "ask"
-    }
-  }
+  "websearch": {
+    "provider": "random"
+  },
+  // V2 ordered permission rules: earlier entries win over later ones.
+  // The shell catch-all "ask" is the fallback when auto-mode is disabled;
+  // while the plugin runs, its evaluate hook reviews everything anyway.
+  "permissions": [
+    { "action": "edit", "resource": "*", "effect": "allow" },
+    { "action": "shell", "resource": "ls*", "effect": "allow" },
+    { "action": "shell", "resource": "find*", "effect": "allow" },
+    { "action": "shell", "resource": "mkdir*", "effect": "allow" },
+    { "action": "shell", "resource": "cat*", "effect": "allow" },
+    { "action": "shell", "resource": "pwd", "effect": "allow" },
+    { "action": "shell", "resource": "echo*", "effect": "allow" },
+    { "action": "shell", "resource": "head*", "effect": "allow" },
+    { "action": "shell", "resource": "tail*", "effect": "allow" },
+    { "action": "shell", "resource": "grep*", "effect": "allow" },
+    { "action": "shell", "resource": "rg*", "effect": "allow" },
+    { "action": "shell", "resource": "git status*", "effect": "allow" },
+    { "action": "shell", "resource": "git diff*", "effect": "allow" },
+    { "action": "shell", "resource": "git log*", "effect": "allow" },
+    { "action": "shell", "resource": "git show*", "effect": "allow" },
+    { "action": "shell", "resource": "which*", "effect": "allow" },
+    { "action": "shell", "resource": "cd *", "effect": "allow" },
+    { "action": "shell", "resource": "wc*", "effect": "allow" },
+    { "action": "shell", "resource": "sort*", "effect": "allow" },
+    { "action": "shell", "resource": "uniq*", "effect": "allow" },
+    { "action": "shell", "resource": "diff*", "effect": "allow" },
+    { "action": "shell", "resource": "file*", "effect": "allow" },
+    { "action": "shell", "resource": "*", "effect": "ask" }
+  ]
 }
