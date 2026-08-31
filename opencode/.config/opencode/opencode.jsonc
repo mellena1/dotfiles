@@ -7,6 +7,10 @@
         "model": { "id": "deepseek-v4-flash", "providerID": "opencode-go" },
         "review": "prompts"
       }
+    },
+    {
+      "package": "@mellena1/opencode-go-usage@0.1.0",
+      "options": {}
     }
   ],
   "websearch": {
