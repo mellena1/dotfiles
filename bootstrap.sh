@@ -481,14 +481,38 @@ run_stow() {
     info "Stowing dotfiles from $dotfiles_dir..."
     cd "$dotfiles_dir"
 
-    # Stow all directories
-    for dir in */; do
-        dir_name="${dir%/}"
-        if [ "$dir_name" != ".git" ]; then
-            info "Stowing $dir_name..."
-            stow --verbose --target="$HOME" --restow "$dir_name"
-        fi
-    done
+    # All packages in one invocation. Stowing them one at a time would break
+    # packages that share a target directory: restowing one unlinks the other's
+    # entries first (agents/ and agents-local/ both populate ~/.agents/skills).
+    stow --verbose --target="$HOME" --restow */
+}
+
+# ~/.claude is not a stow package (it holds runtime state), so this one link is
+# created by hand. It exposes the merged committed + local skill set to Claude.
+setup_claude_skills() {
+    local link="$HOME/.claude/skills"
+
+    # Absent on machines without Claude. The skills themselves are still stowed
+    # to ~/.agents/skills, so nothing is lost by skipping.
+    if [ ! -d "$HOME/.claude" ]; then
+        info "~/.claude not present, skipping skills link"
+        return
+    fi
+
+    if [ -L "$link" ]; then
+        info "~/.claude/skills already linked"
+        return
+    fi
+
+    if [ -e "$link" ]; then
+        info "~/.claude/skills exists and is not a symlink; move its contents into"
+        info "  dotfiles agents/.agents/skills/ (public) or agents-local/.agents/skills/ (local),"
+        info "  then remove it and re-run bootstrap."
+        return
+    fi
+
+    ln -s ../.agents/skills "$link"
+    info "Linked ~/.claude/skills -> ../.agents/skills"
 }
 
 # Main installation
@@ -530,6 +554,7 @@ main() {
 
     info "Setting up local configs..."
     setup_gitconfig_local
+    setup_claude_skills
 
     echo
     info "Bootstrap complete!"

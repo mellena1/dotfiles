@@ -4,3 +4,6 @@ hyprland/.config/hypr/scripts/
 
 ghostty/.config/ghostty/config.local
 opencode/.config/opencode/*.local.json*
+
+# local-only agent skills (machine-specific / work-internal, never published)
+agents-local/
