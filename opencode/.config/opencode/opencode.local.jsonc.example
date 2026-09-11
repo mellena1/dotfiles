@@ -1,0 +1,48 @@
+{
+	// Template for opencode.local.jsonc -- the per-machine override layer.
+	// Copy to opencode.local.jsonc (gitignored) and edit. Nothing loads this .example.
+	//
+	// Global config documents load in this order, later winning:
+	//   1. ~/.config/opencode/opencode.json    written by tooling, if anything manages it
+	//   2. ~/.config/opencode/opencode.jsonc   personal, tracked in dotfiles
+	//   3. ~/.config/opencode/                 the config dir itself (agent/, command/, ...)
+	//   4. whatever $OPENCODE_CONFIG points at -- this file
+	//
+	// Objects deep-merge, arrays append, scalars are overwritten by the later document.
+	// #4 is NOT discovered automatically: without the OPENCODE_CONFIG export in
+	// .zshrc-mine, this file is silently ignored.
+	"$schema": "https://opencode.ai/config.json",
+
+	// --- what belongs here -------------------------------------------------
+	//   "share": "disabled"                      don't publish sessions from this machine
+	//   "agents": { "title": { "model": ... } }   cheap model for title generation
+	//   "experimental": { "policies": [...] }     restrict which providers may be used
+	//   "plugins": [...]                          add, re-point, or "-<id>"-disable plugins
+	//   "mcp": { "servers": { ... } }             add or disable MCP servers
+	//   "skills": [ ... ]                         extra skill pack directories
+	//   "permissions": [...]                      LAST matching rule wins, so rules here
+	//                                             override opencode.jsonc's allowlist
+	//
+	// --- gotchas -----------------------------------------------------------
+	//   Terminal/TUI preferences (theme, keybinds, terminal plugins) do NOT go here.
+	//   They live in cli.json, which has no layered variant -- see merge-cli-config.py.
+	//
+	//   An mcp.servers entry must be restated in full. Mcp.RemoteConfig is a union
+	//   discriminated on `type` with `url` required, so a partial override such as
+	//   { "disabled": true } is dropped silently.
+	//
+	//   Re-declaring a plugin package overwrites its registration by plugin id, which is
+	//   how you change another layer's plugin options. "-<plugin-id>" disables one
+	//   (matched on id, not package name).
+	//
+	// --- v1 keys that still parse but are legacy ---------------------------
+	//   "small_model": "p/m"        -> "agents": { "title": { "model": "p/m" } }
+	//   "enabled_providers": ["p"]  -> "experimental": { "policies": [
+	//                                    { "action": "provider.use", "resource": "*", "effect": "deny" },
+	//                                    { "action": "provider.use", "resource": "p", "effect": "allow" }] }
+	//   "plugin": [...]             -> "plugins": [...]   (using both double-loads)
+	//   "autoshare": true           -> "share": "auto"
+	//   "command"/"reference"       -> "commands"/"references"
+	//   "mcp": { "x": { "enabled": false } } -> "mcp": { "servers": { "x": { "disabled": true } } }
+	"share": "disabled"
+}

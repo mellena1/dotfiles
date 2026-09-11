@@ -4,6 +4,8 @@ hyprland/.config/hypr/scripts/
 
 ghostty/.config/ghostty/config.local
 opencode/.config/opencode/*.local.json*
+# ...but do track the committed template for it
+!opencode/.config/opencode/*.local.jsonc.example
 
 # local-only agent skills (machine-specific / work-internal, never published)
 agents-local/
