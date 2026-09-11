@@ -1,9 +1,13 @@
 SERVICES := $(notdir $(wildcard systemd/.config/systemd/user/*.service))
 
-all: stow enable-services
+all: stow opencode-cli enable-services
 
 stow:
 	stow --verbose --target=$$HOME --restow */
+
+# cli.json can't be stowed (opencode rewrites it in place), so build it instead.
+opencode-cli:
+	@sh opencode/merge-cli-config.sh
 
 delete:
 	stow --verbose --target=$$HOME --delete */
