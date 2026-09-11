@@ -16,11 +16,14 @@
   "websearch": {
     "provider": "random"
   },
-  // Ordered permission rules: earlier entries win over later ones. The
-  // shell catch-all "ask" is the fallback when auto-mode is disabled;
-  // while the plugin runs, its evaluate hook reviews everything unmatched
-  // anyway.
+  // Ordered permission rules: the LAST matching rule wins, so these go
+  // general-first, specific-after. The shell catch-all must stay at the TOP --
+  // opencode prepends a built-in `* * allow` rule, so without a broad "ask"
+  // here anything not listed below resolves to allow, not ask.
+  // Rules in opencode.local.jsonc (loaded after this file) append, and so
+  // override everything here.
   "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
     { "action": "edit", "resource": "*", "effect": "allow" },
     { "action": "shell", "resource": "ls*", "effect": "allow" },
     { "action": "shell", "resource": "find*", "effect": "allow" },
@@ -42,8 +45,7 @@
     { "action": "shell", "resource": "sort*", "effect": "allow" },
     { "action": "shell", "resource": "uniq*", "effect": "allow" },
     { "action": "shell", "resource": "diff*", "effect": "allow" },
-    { "action": "shell", "resource": "file*", "effect": "allow" },
-    { "action": "shell", "resource": "*", "effect": "ask" }
+    { "action": "shell", "resource": "file*", "effect": "allow" }
   ],
   "mcp": {
     "servers": {
