@@ -2,14 +2,16 @@
   "$schema": "https://opencode.ai/config.json",
   "plugins": [
     {
-      "package": "@mellena1/opencode-auto-mode@0.4.6",
+      // TODO: reviewer back to opencode-go/deepseek-v4.1-flash once
+      // anomalyco/opencode#48358 ships (Go rejects headerless plugin calls).
+      "package": "@mellena1/opencode-auto-mode",
       "options": {
-        "model": { "id": "deepseek-v4-flash", "providerID": "opencode-go" },
+        "model": { "id": "gpt-5-nano", "providerID": "opencode" },
         "review": "prompts"
       }
     },
     {
-      "package": "@mellena1/opencode-go-usage@0.1.5",
+      "package": "@mellena1/opencode-go-usage",
       "options": {}
     }
   ],
