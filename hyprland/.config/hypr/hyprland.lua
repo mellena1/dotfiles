@@ -313,6 +313,13 @@ hl.window_rule({
     float = true,
 })
 
+-- Steam games: auto-fullscreen on open
+hl.window_rule({
+    name       = "steam-games-fullscreen",
+    match      = { class = "^steam_app_.*$" },
+    fullscreen = true,
+})
+
 -- Fix dragging issues with XWayland apps
 hl.window_rule({
     name     = "fix-xwayland-drags",
