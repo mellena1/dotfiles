@@ -320,6 +320,38 @@ hl.window_rule({
     fullscreen = true,
 })
 
+-- Gaming: allow tearing (master toggle allow_tearing above must also be true).
+-- Shared equivalent of the old machine-local game-immediate rule, broadened
+-- beyond Steam to other launchers/Wine games.
+hl.window_rule({
+    name      = "game-tearing",
+    match     = { class = "^(steam_app_.*|lutris|heroic|bottles|wine|gamescope|.*\\.exe)$" },
+    immediate = true,
+})
+
+-- Gaming: inhibit idle when a game has focus, plus a fallback for any
+-- fullscreen app. Native backup for scripts/gaming-inhibit.sh.
+hl.window_rule({
+    name         = "game-idle-inhibit",
+    match        = { class = "^(steam_app_.*|lutris|heroic|bottles|wine|gamescope|.*\\.exe)$" },
+    idle_inhibit = "focus",
+})
+
+hl.window_rule({
+    name         = "fullscreen-idle-inhibit",
+    match        = { fullscreen = true },
+    idle_inhibit = "fullscreen",
+})
+
+-- Gaming perf: skip blur/shadow/rounding on game windows
+hl.window_rule({
+    name      = "game-perf",
+    match     = { class = "^(steam_app_.*|lutris|heroic|bottles|wine|gamescope|.*\\.exe)$" },
+    no_blur   = true,
+    no_shadow = true,
+    rounding  = 0,
+})
+
 -- Fix dragging issues with XWayland apps
 hl.window_rule({
     name     = "fix-xwayland-drags",
