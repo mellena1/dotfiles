@@ -128,7 +128,7 @@ hl.config({
 
 hl.config({
     group = {
-        auto_group = true,
+        auto_group = false,
         insert_after_current = true,
         focus_removed_window = true,
         col = {
@@ -259,8 +259,8 @@ hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Scroll through existing workspaces
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { mouse = true })
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { mouse = true })
 
 -- Mouse drag/resize
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -269,7 +269,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -- Multimedia keys
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
     { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"),
     { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
     { locked = true, repeating = true })
@@ -343,13 +343,17 @@ hl.window_rule({
     idle_inhibit = "fullscreen",
 })
 
--- Gaming perf: skip blur/shadow/rounding on game windows
+-- Gaming perf: skip blur/shadow/rounding on game windows.
+-- no_follow_mouse + confine_pointer keep the pointer locked in the game on
+-- multi-monitor setups so drift to a side monitor can't steal focus mid-fight.
 hl.window_rule({
-    name      = "game-perf",
-    match     = { class = "^(steam_app_.*|lutris|heroic|bottles|wine|gamescope|.*\\.exe)$" },
-    no_blur   = true,
-    no_shadow = true,
-    rounding  = 0,
+    name              = "game-perf",
+    match             = { class = "^(steam_app_.*|lutris|heroic|bottles|wine|gamescope|.*\\.exe)$" },
+    no_blur           = true,
+    no_shadow         = true,
+    rounding          = 0,
+    no_follow_mouse   = true,
+    confine_pointer   = true,
 })
 
 -- Fix dragging issues with XWayland apps

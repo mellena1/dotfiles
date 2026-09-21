@@ -15,13 +15,14 @@ if ! nvidia-smi &> /dev/null; then
     exit 0
 fi
 
-# Get GPU info
-USAGE=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)
-TEMP=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)
-NAME=$(nvidia-smi --query-gpu=name --format=csv,noheader)
-VRAM=$(nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits | awk -F',' '{printf "%.0f/%.0f", $1/1024, $2/1024}')
-POWER=$(nvidia-smi --query-gpu=power.draw --format=csv,noheader,nounits)
-CLOCK=$(nvidia-smi --query-gpu=clocks.gr --format=csv,noheader,nounits)
+# Get GPU info with a single nvidia-smi call (was 5+ forks every 5s)
+INFO=$(nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,name,memory.used,memory.total,power.draw,clocks.gr --format=csv,noheader,nounits)
+USAGE=$(echo "$INFO" | awk -F',' '{gsub(/[^0-9.]/,"",$1); print $1}')
+TEMP=$(echo "$INFO" | awk -F',' '{gsub(/[^0-9.]/,"",$2); print $2}')
+NAME=$(echo "$INFO" | awk -F',' '{gsub(/^ +| +$/,"",$3); print $3}')
+VRAM=$(echo "$INFO" | awk -F',' '{gsub(/[^0-9.]/,"",$4); gsub(/[^0-9.]/,"",$5); printf "%.0f/%.0f", $4/1024, $5/1024}')
+POWER=$(echo "$INFO" | awk -F',' '{gsub(/[^0-9.]/,"",$6); print ($6 == "" ? "N/A" : $6)}')
+CLOCK=$(echo "$INFO" | awk -F',' '{gsub(/[^0-9.]/,"",$7); print ($7 == "" ? "N/A" : $7)}')
 
 # Build tooltip
 TOOLTIP=$(printf "%s\n\nUsage: %s%%\nTemperature: %s°C\nVRAM: %sGB\nPower: %sW\nClock: %s" "$NAME" "$USAGE" "$TEMP" "$VRAM" "$POWER" "$CLOCK")
