@@ -1,0 +1,19 @@
+# Build tooling, not user config. Without this, stow symlinks it to ~/merge-cli-config.sh.
+^/merge-cli-config\.sh
+# --- stow default ignores (a local list replaces the defaults, so replicate them) ---
+RCS
+.+,v
+CVS
+\.\#.+
+\.cvsignore
+\.svn
+_darcs
+\.hg
+\.git
+\.gitignore
+\.gitmodules
+.+~
+\#.*\#
+^/README.*
+^/LICENSE.*
+^/COPYING
