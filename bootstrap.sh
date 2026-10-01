@@ -254,7 +254,7 @@ install_hunk() {
             fi
             ;;
         macOS)
-            npm install -g @modem-dev/hunk
+            brew install hunk
             ;;
     esac
 }
