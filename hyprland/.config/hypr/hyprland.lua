@@ -343,6 +343,15 @@ hl.window_rule({
     idle_inhibit = "fullscreen",
 })
 
+-- VR runtime: SteamVR/dashboard/monitor/compositor windows must also block
+-- idle (hypridle DPMS/lock/suspend fires mid-session otherwise — VR produces
+-- no desk input, and with no game window open nothing else inhibits).
+hl.window_rule({
+    name         = "vr-idle-inhibit",
+    match        = { class = "^(vrmonitor|vrcompositor|vrdashboard|vrwebhelper|steamvr_room_setup|steamtours)$" },
+    idle_inhibit = "always",
+})
+
 -- Gaming perf: skip blur/shadow/rounding on game windows.
 -- no_follow_mouse + confine_pointer keep the pointer locked in the game on
 -- multi-monitor setups so drift to a side monitor can't steal focus mid-fight.
@@ -354,6 +363,18 @@ hl.window_rule({
     rounding          = 0,
     no_follow_mouse   = true,
     confine_pointer   = true,
+})
+
+-- SteamVR dashboard helpers spawn untitled XWayland windows: float them
+-- instead of tiling. (fix-xwayland-drags below will also match and add
+-- no_focus, which is fine: these mirror in-VR overlays.)
+hl.window_rule({
+    name      = "steamvr-helpers",
+    match     = { class = "^$", title = "^$", xwayland = true },
+    float     = true,
+    no_blur   = true,
+    no_shadow = true,
+    rounding  = 0,
 })
 
 -- Fix dragging issues with XWayland apps
