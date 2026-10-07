@@ -366,8 +366,8 @@ hl.window_rule({
 })
 
 -- SteamVR dashboard helpers spawn untitled XWayland windows: float them
--- instead of tiling. (fix-xwayland-drags below will also match and add
--- no_focus, which is fine: these mirror in-VR overlays.)
+-- instead of tiling. NOTE: do NOT apply no_focus to these — vrwebhelper's
+-- 799x599 Settings windows have empty class/title and need focus/clicks.
 hl.window_rule({
     name      = "steamvr-helpers",
     match     = { class = "^$", title = "^$", xwayland = true },
@@ -377,16 +377,21 @@ hl.window_rule({
     rounding  = 0,
 })
 
+-- Disabled 2026-10-07: fix-xwayland-drags made SteamVR Settings (vrwebhelper
+-- empty class/title, 799x599) unclickable/undraggable via no_focus=true.
+-- That generic rule assumes all empty XWayland floaters are invisible drag
+-- helpers, which SteamVR violates. If XWayland drag issues return, replace
+-- with app-specific rules instead of the broad empty-class match.
 -- Fix dragging issues with XWayland apps
-hl.window_rule({
-    name     = "fix-xwayland-drags",
-    match    = {
-        class      = "^$",
-        title      = "^$",
-        xwayland   = true,
-        float      = true,
-        fullscreen = false,
-        pin        = false,
-    },
-    no_focus = true,
-})
+-- hl.window_rule({
+--     name     = "fix-xwayland-drags",
+--     match    = {
+--         class      = "^$",
+--         title      = "^$",
+--         xwayland   = true,
+--         float      = true,
+--         fullscreen = false,
+--         pin        = false,
+--     },
+--     no_focus = true,
+-- })
