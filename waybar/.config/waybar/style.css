@@ -90,6 +90,16 @@
   background-color: rgba(245, 124, 0, 0.8);
 }
 
+/* Waybar 0.16 puts the #custom-* name on the label but sets the hover state on
+   the wrapper box, so #custom-*:hover no longer matches. Remove this workaround
+   once https://github.com/Alexays/Waybar/pull/5473 is released. */
+box:hover > #custom-power,
+box:hover > #custom-cpu,
+box:hover > #custom-gpu,
+box:hover > #custom-backlight {
+  background-color: rgba(245, 124, 0, 0.8);
+}
+
 #workspaces button:hover{
   background-color: rgba(245, 124, 0, 0.2);
   padding: 2px 8px;
