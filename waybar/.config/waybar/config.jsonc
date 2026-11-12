@@ -18,7 +18,7 @@
       "idle_inhibitor",
       "network",
       "pulseaudio",
-      "backlight",
+      "custom/backlight",
       "battery",
       "battery#bat2",
       "clock"
@@ -67,8 +67,15 @@
     "memory": {
       "format": "<span color='#8A2BE2'> </span> {}%"
     },
-    "backlight": {
-      "format": "{icon} {percent}%",
+    "custom/backlight": {
+      "exec": "bash /home/mellena1/.config/waybar/scripts/backlight-module.sh",
+      "exec-if": "ls /sys/class/backlight/*/brightness 2>/dev/null",
+      "format": "{icon} {text}%",
+      "return-type": "json",
+      "hide-empty-text": true,
+      "interval": 2,
+      "on-scroll-up": "brightnessctl -e4 -n2 set 5%+",
+      "on-scroll-down": "brightnessctl -e4 -n2 set 5%-",
       "format-icons": [
         "",
         "",
