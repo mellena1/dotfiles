@@ -259,6 +259,55 @@ install_hunk() {
     esac
 }
 
+# Install hex (voice dictation)
+install_hex() {
+    if command_exists hex; then
+        info "hex already installed"
+    else
+        info "Installing hex..."
+        case "$OS" in
+            Linux)
+                if command_exists yay; then
+                    yay -S --noconfirm hex-bin
+                elif command_exists paru; then
+                    paru -S --noconfirm hex-bin
+                elif command_exists pacman; then
+                    info "Installing hex-bin from AUR..."
+                    local tmpdir=$(mktemp -d)
+                    git clone https://aur.archlinux.org/hex-bin.git "$tmpdir/hex-bin"
+                    cd "$tmpdir/hex-bin"
+                    makepkg -si --noconfirm
+                    cd - > /dev/null
+                    rm -rf "$tmpdir"
+                else
+                    curl -fsSL https://anoma.ly/hex/install-linux.sh | sh
+                fi
+                ;;
+            macOS)
+                brew install --cask anomalyco/tap/hex
+                ;;
+        esac
+    fi
+
+    # Wayland clipboard/paste helpers required by Hex on Linux
+    if [ "$OS" = "Linux" ]; then
+        if ! command_exists wl-copy || ! command_exists wtype; then
+            info "Installing Wayland paste helpers (wl-clipboard, wtype)..."
+            if command_exists yay; then
+                yay -S --needed --noconfirm wl-clipboard wtype
+            elif command_exists paru; then
+                paru -S --needed --noconfirm wl-clipboard wtype
+            elif command_exists pacman; then
+                sudo pacman -S --needed --noconfirm wl-clipboard wtype
+            elif command_exists apt-get; then
+                sudo apt-get install -y wl-clipboard wtype
+            elif command_exists dnf; then
+                sudo dnf install -y wl-clipboard wtype
+            fi
+        fi
+    fi
+}
+
 # Install btop
 install_btop() {
     if command_exists btop; then
@@ -535,6 +584,7 @@ main() {
     install_bat
     install_fd
     install_hunk
+    install_hex
     install_btop
     install_duf
     install_dust

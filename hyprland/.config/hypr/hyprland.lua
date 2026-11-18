@@ -289,6 +289,9 @@ hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window --clipboard-o
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 hl.bind(mainMod .. " + SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m output --clipboard-only"))
 
+-- Dictation (Hex)
+hl.bind("CTRL + SPACE", hl.dsp.global("anomaly.hex:dictation"))
+
 -- Machine-specific keybinds (gitignored)
 pcall(require, "keybinds-local")
 
