@@ -128,7 +128,7 @@ hl.config({
 
 hl.config({
     group = {
-        auto_group = false,
+        auto_group = true,
         insert_after_current = true,
         focus_removed_window = true,
         col = {
